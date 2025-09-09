@@ -43,3 +43,31 @@ export const deleteClient = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// ✅ Edit entire client
+export const editField = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { field, value } = req.body;
+
+    if (!field) {
+      return res.status(400).json({ message: "Field name is required" });
+    }
+
+    const updatedClient = await Client.findByIdAndUpdate(
+      id,
+      { [field]: value }, // dynamic field update
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedClient) {
+      return res.status(404).json({ message: "Client not found" });
+    }
+
+    res.json(updatedClient);
+  } catch (err) {
+    console.error("Edit field error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
