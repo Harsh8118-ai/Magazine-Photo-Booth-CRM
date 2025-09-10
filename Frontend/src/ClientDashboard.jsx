@@ -238,7 +238,6 @@ export default function ClientDashboard() {
                 <th className="p-2 text-center">CALL</th>
                 <th className="p-2 text-center hidden sm:table-cell">MESSAGED</th>
                 <th className="p-2 text-center hidden sm:table-cell">CALLED</th>
-                <th className="p-2 text-left hidden md:table-cell">STATUS</th>
                 <th className="p-2 text-left hidden md:table-cell">NOTE</th>
               </tr>
             </thead>
@@ -292,15 +291,6 @@ export default function ClientDashboard() {
                     </td>
                     <td className="p-2 text-center hidden sm:table-cell">
                       <input type="checkbox" checked={c.called} onChange={(e) => toggleStatus(c._id, "called", e.target.checked)} />
-                    </td>
-                    <td className="p-2 hidden md:table-cell">
-                      <select value={c.status || "New"} onChange={(e) => toggleStatus(c._id, "status", e.target.value)} className="border rounded px-2 py-1 text-xs sm:text-sm w-full">
-                        <option value="New">New</option>
-                        <option value="Contacted">Contacted</option>
-                        <option value="Interested">Interested</option>
-                        <option value="Confirmed">Confirmed</option>
-                        <option value="Completed">Completed</option>
-                      </select>
                     </td>
                     <td className="p-2 hidden md:table-cell">
                       <Textarea placeholder="Add note..." value={c.note || ""} onChange={(e) => updateNote(c._id, e.target.value)} className="min-h-[38px]" />
