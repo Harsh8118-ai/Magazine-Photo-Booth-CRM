@@ -213,7 +213,7 @@ export default function EditClientDashboard() {
               ))}
             </tbody>
           </table>
-        </CardContent>
+        </CardContent> 
       </Card>
     </div>
   );
