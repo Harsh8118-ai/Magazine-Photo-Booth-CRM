@@ -4,9 +4,10 @@ import { ClipboardList, LayoutGrid, Pencil, Filter, ShoppingCart, DollarSign, He
 
 import ClientDashboard from "./ClientDashboard";
 import EditClientDashboard from "./EditClientDashboard";
+import Features from "./Features";
 
 // Placeholder components (replace later)
-const Features = () => <div className="p-6">Features Page</div>;
+
 const Orders = () => <div className="p-6">Orders Page</div>;
 const Finance = () => <div className="p-6">Finance Page</div>;
 
@@ -83,7 +84,7 @@ export default function App() {
         </header>
 
         {/* Routes */}
-        <main>
+        <main className="container mx-auto px-4 py-6 max-w-8xl">
           <Routes>
             <Route path="/dashboard" element={<ClientDashboard />} />
             <Route path="/edit-dashboard" element={<EditClientDashboard />} />
