@@ -5,10 +5,11 @@ import { ClipboardList, LayoutGrid, Pencil, Filter, ShoppingCart, DollarSign, He
 import ClientDashboard from "./ClientDashboard";
 import EditClientDashboard from "./EditClientDashboard";
 import Features from "./Features";
+import Orders from "./Orders";
 
 // Placeholder components (replace later)
 
-const Orders = () => <div className="p-6">Orders Page</div>;
+
 const Finance = () => <div className="p-6">Finance Page</div>;
 
 export default function App() {
