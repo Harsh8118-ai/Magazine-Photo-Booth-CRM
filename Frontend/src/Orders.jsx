@@ -3,7 +3,7 @@ import { Card, CardContent } from "./components/ui/card";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
 import { Textarea } from "./components/ui/textarea";
-import { Phone, MessageCircle, User, Calendar, AlertCircle } from "lucide-react";
+import { Phone, MessageCircle, AlertCircle, ShoppingCart, Clock, CheckCircle2 } from "lucide-react";
 
 export default function Orders() {
     const [clients, setClients] = useState([]);
@@ -165,7 +165,7 @@ export default function Orders() {
                 <Card className="bg-gray-200 border border-gray-300">
                     <CardContent className="flex items-center space-x-4">
                         <div className="p-2 ">
-                            <User className="text-green-600 w-6 h-6" />
+                            <ShoppingCart className="text-green-600 w-6 h-6" />
                         </div>
                         <div>
                             <p className="text-sm text-gray-500">Total Orders</p>
@@ -176,10 +176,10 @@ export default function Orders() {
                 <Card className="bg-gray-200 border border-gray-300">
                     <CardContent className="flex items-center space-x-4">
                         <div className="p-2 ">
-                            <MessageCircle className="text-blue-600 w-6 h-6" />
+                            <Clock className="text-blue-600 w-6 h-6" />
                         </div>
                         <div>
-                            <p className="text-sm text-gray-500">Contacted</p>
+                            <p className="text-sm text-gray-500">Confirmed</p>
                             <p className="text-lg font-semibold">{contacted}</p>
                         </div>
                     </CardContent>
@@ -187,11 +187,11 @@ export default function Orders() {
                 <Card className="bg-gray-200 border border-gray-300">
                     <CardContent className="flex items-center space-x-4 ">
                         <div className="p-2 ">
-                            <Calendar className="text-yellow-600 w-6 h-6" />
+                            <CheckCircle2 className="text-yellow-600 w-6 h-6" />
                         </div>
                         <div>
-                            <p className="text-sm text-gray-500">Upcoming (7 days)</p>
-                            <p className="text-lg font-semibold">{upcoming}</p>
+                            <p className="text-sm text-gray-500">Completed</p>
+                            <p className="text-lg font-semibold">{pending}</p>
                         </div>
                     </CardContent>
                 </Card>
@@ -201,8 +201,8 @@ export default function Orders() {
                             <AlertCircle className="text-red-600 w-6 h-6" />
                         </div>
                         <div>
-                            <p className="text-sm text-gray-500">Pending Follow-ups</p>
-                            <p className="text-lg font-semibold">{pending}</p>
+                            <p className="text-sm text-gray-500">Upcoming (7 days)</p>
+                            <p className="text-lg font-semibold">{upcoming}</p>
                         </div>
                     </CardContent>
                 </Card>
@@ -255,8 +255,8 @@ export default function Orders() {
                                 <th className="p-2 text-left cursor-pointer w-[70px]" onClick={() => requestSort("eventDate")}>DATE {getSortIndicator("eventDate")}</th>
                                 <th className="p-2 text-left hidden sm:table-cell">LOCATION</th>
                                 <th className="p-2 text-left cursor-pointer" onClick={() => requestSort("phone")}>PHONE {getSortIndicator("phone")}</th>
-                                <th className="p-2 text-center">WHATSAPP</th>
-                                <th className="p-2 text-center">CALL</th>
+                                <th className="p-2 text-center"><MessageCircle size={18} className="ml-3" /></th>
+                                <th className="p-2 text-center"><Phone size={18} className="ml-3" /></th>
                                 <th className="p-2 text-center hidden sm:table-cell">Booking</th>
                                 <th className="p-2 text-center hidden sm:table-cell">Token</th>
                                 <th className="p-2 text-center hidden sm:table-cell">Remaining</th>
