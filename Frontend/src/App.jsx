@@ -6,11 +6,8 @@ import ClientDashboard from "./ClientDashboard";
 import EditClientDashboard from "./EditClientDashboard";
 import Features from "./Features";
 import Orders from "./Orders";
+import FinancePage from "./Finance";
 
-// Placeholder components (replace later)
-
-
-const Finance = () => <div className="p-6">Finance Page</div>;
 
 export default function App() {
   return (
@@ -91,7 +88,7 @@ export default function App() {
             <Route path="/edit-dashboard" element={<EditClientDashboard />} />
             <Route path="/features" element={<Features />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="/finance" element={<Finance />} />
+            <Route path="/finance" element={<FinancePage />} />
           </Routes>
         </main>
       </div>
