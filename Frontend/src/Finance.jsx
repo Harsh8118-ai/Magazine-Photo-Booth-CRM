@@ -43,7 +43,7 @@ const Button = ({ children, onClick, variant = "default", size = "default", clas
   }
   const sizes = {
     default: "h-10 py-2 px-4",
-    sm: "h-9 px-3",
+    sm: "h-9 px-3", 
   }
 
   return (
