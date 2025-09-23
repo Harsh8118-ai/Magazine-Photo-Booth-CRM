@@ -82,18 +82,27 @@ function ClientCard({ client }) {
   return (
     <Card className="hover:shadow-md transition-shadow">
       <CardHeader className="pb-3">
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between w-full">
+          {/* Left: Name + Event Type */}
           <div>
             <CardTitle className="text-lg flex items-center space-x-2">
               <User className="h-4 w-4 text-muted-foreground" />
               <span>{client.name}</span>
             </CardTitle>
+
             <div className="flex items-center space-x-2 mt-1">
               <Briefcase className="h-3 w-3 text-muted-foreground" />
               <span className="text-sm text-muted-foreground">{client.eventType}</span>
             </div>
           </div>
-          <Badge className={getStatusColor(client.status)}>{client.status}</Badge>
+
+          {/* Right: Created At + Status */}
+          <div className="flex flex-col items-end space-y-1">
+            <span className="text-xs text-muted-foreground">
+              {new Date(client.createdAt).toLocaleDateString()}
+            </span>
+            <Badge className={getStatusColor(client.status)}>{client.status}</Badge>
+          </div>
         </div>
       </CardHeader>
 

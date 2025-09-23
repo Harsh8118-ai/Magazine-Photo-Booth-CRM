@@ -12,7 +12,7 @@ import FinancePage from "./Finance";
 export default function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 px-36">
         {/* Navbar */}
         <header className="flex justify-between items-center px-6 py-3 bg-white border-b shadow-sm">
           {/* Left: Logo + Title */}
