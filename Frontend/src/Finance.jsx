@@ -42,7 +42,7 @@ const Button = ({ children, onClick, variant = "default", size = "default", clas
     outline: "border border-gray-300 bg-transparent hover:bg-gray-50", 
   }
   const sizes = {
-    default: "h-10 py-2 px-4",
+    default: "h-10 py-2 px-4", 
     sm: "h-9 px-3", 
   }
 
