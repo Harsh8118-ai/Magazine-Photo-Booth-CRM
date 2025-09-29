@@ -7,6 +7,7 @@ const connectDb = require("./utils/db");
 // Import Routes
 const clientRoute = require("./routes/client-route");
 const orderRoute = require("./routes/orders-route");
+const financeRoute = require("./routes/finance-route");
 
 const allowedOrigins = process.env.FRONTEND_ORIGIN?.split(",") || [];
 
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 // API Routes
 app.use("/api/clients", clientRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/finance", financeRoute);
 
 // Root Route
 app.get("/", (req, res) => {
