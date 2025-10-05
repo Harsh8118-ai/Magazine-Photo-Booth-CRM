@@ -149,7 +149,7 @@ function ClientCard({ client }) {
           <div className="flex items-center space-x-2">
             <Button variant="ghost" size="sm" asChild className="h-6 w-6 p-0">
               <a
-                href={`https://wa.me/${client.phone}`}
+                href={`https://wa.me/${client.phone.startsWith("+91") ? client.phone.slice(1) : client.phone.length === 10 ? `91${client.phone}` : client.phone}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`WhatsApp ${client.name}`}
