@@ -30,8 +30,13 @@ export default function ClientDashboard() {
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
+  const [message, setMessage] = useState("");
+
   const addClient = async () => {
-    if (!form.name || !form.phone) return alert("Name & Phone required");
+    if (!form.name || !form.phone) {
+      setMessage("⚠️ Name & Phone required");
+      return;
+    }
 
     try {
       const res = await fetch(`${BASE_URL}/clients`, {
@@ -40,11 +45,34 @@ export default function ClientDashboard() {
         body: JSON.stringify(form),
       });
 
-      const newClient = await res.json();
-      setClients([...clients, newClient]);
-      setForm({ name: "", eventType: "", eventDate: "", eventLocation: "", phone: "" });
+      const data = await res.json();
+
+      if (!res.ok) {
+        // ❌ If number already exists or any error — show message and reset form
+        setMessage(data.error || "Something went wrong");
+        setForm({
+          name: "",
+          eventType: "",
+          eventDate: "",
+          eventLocation: "",
+          phone: "",
+        });
+        return;
+      }
+
+      // ✅ Success case — add to list and reset form
+      setClients([...clients, data]);
+      setForm({
+        name: "",
+        eventType: "",
+        eventDate: "",
+        eventLocation: "",
+        phone: "",
+      });
+      setMessage("✅ Client added successfully!");
     } catch (err) {
       console.error("Add client error:", err);
+      setMessage("❌ Server error");
     }
   };
 
@@ -139,6 +167,13 @@ export default function ClientDashboard() {
     <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
       <h1 className="text-xl font-bold">Client Overview</h1>
 
+      {message && (
+        <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-2 rounded">
+          {message}
+        </div>
+      )}
+
+
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="bg-gray-200 border border-gray-300">
@@ -195,8 +230,8 @@ export default function ClientDashboard() {
             <Input placeholder="Event Type" name="eventType" value={form.eventType} onChange={handleChange} />
             <Input type="date" name="eventDate" value={form.eventDate} onChange={handleChange} className="flex-1 min-w-[120px]" />
             <Input placeholder="Event Location" name="eventLocation" value={form.eventLocation} onChange={handleChange} />
-              <Input placeholder="Phone Number *" name="phone" value={form.phone} onChange={handleChange} />
-              <Button onClick={addClient} className="bg-green-600">Add Client</Button>
+            <Input placeholder="Phone Number *" name="phone" value={form.phone} onChange={handleChange} />
+            <Button onClick={addClient} className="bg-green-600">Add Client</Button>
           </div>
         </CardContent>
       </Card>

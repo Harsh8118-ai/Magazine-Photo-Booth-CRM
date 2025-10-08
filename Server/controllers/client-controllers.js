@@ -3,6 +3,19 @@ import Client from "../models/client-model.js";
 // Create client
 export const createClient = async (req, res) => {
   try {
+    const { phone } = req.body;
+
+    // check if phone number or email already exists
+    const existingClient = await Client.findOne({
+      $or: [{ phone }],
+    });
+
+    if (existingClient) {
+      return res
+        .status(400)
+        .json({ error: "Client with this number already exists" });
+    }
+
     const client = await Client.create(req.body);
     res.status(201).json(client);
   } catch (err) {
