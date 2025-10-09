@@ -164,91 +164,73 @@ export default function ClientDashboard() {
   });
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
-      <h1 className="text-xl font-bold">Client Overview</h1>
+     <div className="p-4 sm:p-6 space-y-6 bg-gray-50 min-h-screen">
+      <h1 className="text-lg sm:text-xl font-bold text-center sm:text-left">Client Overview</h1>
 
       {message && (
-        <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-4 py-2 rounded">
+        <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-3 py-2 text-sm sm:text-base rounded text-center">
           {message}
         </div>
       )}
 
-
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="bg-gray-200 border border-gray-300">
-          <CardContent className="flex items-center space-x-4">
-            <div className="p-2 ">
-              <User className="text-green-600 w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-sm text-gray-500">Total Clients</p>
-              <p className="text-lg font-semibold">{totalClients}</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="bg-gray-200 border border-gray-300">
-          <CardContent className="flex items-center space-x-4">
-            <div className="p-2 ">
-              <MessageCircle className="text-blue-600 w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-sm text-gray-500">Contacted</p>
-              <p className="text-lg font-semibold">{contacted}</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="bg-gray-200 border border-gray-300">
-          <CardContent className="flex items-center space-x-4 ">
-            <div className="p-2 ">
-              <Calendar className="text-yellow-600 w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-sm text-gray-500">Upcoming (7 days)</p>
-              <p className="text-lg font-semibold">{upcoming}</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="bg-gray-200 border border-gray-300">
-          <CardContent className="flex items-center space-x-4">
-            <div className="p-2 ">
-              <AlertCircle className="text-red-600 w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-sm text-gray-500">Pending Follow-ups</p>
-              <p className="text-lg font-semibold">{pending}</p>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        {[ 
+          { icon: <User className="text-green-600 w-5 h-5 sm:w-6 sm:h-6" />, label: "Total Clients", value: totalClients },
+          { icon: <MessageCircle className="text-blue-600 w-5 h-5 sm:w-6 sm:h-6" />, label: "Contacted", value: contacted },
+          { icon: <Calendar className="text-yellow-600 w-5 h-5 sm:w-6 sm:h-6" />, label: "Upcoming (7 days)", value: upcoming },
+          { icon: <AlertCircle className="text-red-600 w-5 h-5 sm:w-6 sm:h-6" />, label: "Pending Follow-ups", value: pending },
+        ].map((item, i) => (
+          <Card key={i} className="bg-gray-200 border border-gray-300">
+            <CardContent className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4">
+              <div>{item.icon}</div>
+              <div>
+                <p className="text-xs sm:text-sm text-gray-500">{item.label}</p>
+                <p className="text-sm sm:text-lg font-semibold">{item.value}</p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
 
       {/* Add Client Form */}
       <Card className="bg-gray-200 border border-gray-300">
         <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-6 gap-4 items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-6 gap-3 sm:gap-4">
             <Input placeholder="Client Name *" name="name" value={form.name} onChange={handleChange} />
             <Input placeholder="Event Type" name="eventType" value={form.eventType} onChange={handleChange} />
-            <Input type="date" name="eventDate" value={form.eventDate} onChange={handleChange} className="flex-1 min-w-[120px]" />
+            <Input type="date" name="eventDate" value={form.eventDate} onChange={handleChange} />
             <Input placeholder="Event Location" name="eventLocation" value={form.eventLocation} onChange={handleChange} />
             <Input placeholder="Phone Number *" name="phone" value={form.phone} onChange={handleChange} />
-            <Button onClick={addClient} className="bg-green-600">Add Client</Button>
+            <Button onClick={addClient} className="bg-green-600 w-full sm:w-auto">
+              Add Client
+            </Button>
           </div>
         </CardContent>
       </Card>
 
       {/* Search and Filters */}
       <Card>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
-            <Input placeholder="Search by name, phone, event type..." value={search} onChange={(e) => setSearch(e.target.value)} />
-            <select value={filter} onChange={(e) => setFilter(e.target.value)} className="border rounded px-3 py-2 text-sm">
+        <CardContent className="space-y-3 sm:space-y-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center">
+            <Input
+              placeholder="Search by name, phone, event type..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="flex-1"
+            />
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className="border rounded px-3 py-2 text-sm w-full sm:w-auto"
+            >
               <option value="all">All Clients</option>
               <option value="called">Called</option>
               <option value="messaged">Messaged</option>
               <option value="upcoming">Upcoming Events</option>
             </select>
           </div>
-          <div className="flex space-x-4 text-sm">
+          <div className="flex flex-wrap gap-2 text-xs sm:text-sm justify-center sm:justify-start">
             <span className="px-2 py-1 bg-red-100 text-red-800 rounded-full">Overdue</span>
             <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">Within 7 days</span>
             <span className="px-2 py-1 bg-violet-100 text-violet-800 rounded-full">Future</span>
@@ -258,20 +240,20 @@ export default function ClientDashboard() {
 
       {/* Clients Table */}
       <Card>
-        <CardContent className="overflow-auto p-0">
-          <table className="min-w-full text-sm border-collapse">
+        <CardContent className="overflow-x-auto p-0">
+          <table className="min-w-full text-xs sm:text-sm border-collapse">
             <thead className="bg-gray-100 sticky top-0">
               <tr>
                 <th className="p-2 text-left cursor-pointer" onClick={() => requestSort("name")}>NAME {getSortIndicator("name")}</th>
-                <th className="p-2 text-left cursor-pointer" onClick={() => requestSort("eventType")}>EVENT TYPE {getSortIndicator("eventType")}</th>
-                <th className="p-2 text-left cursor-pointer w-[70px]" onClick={() => requestSort("eventDate")}>DATE {getSortIndicator("eventDate")}</th>
-                <th className="p-2 text-left hidden sm:table-cell">LOCATION</th>
+                <th className="p-2 text-left cursor-pointer" onClick={() => requestSort("eventType")}>EVENT {getSortIndicator("eventType")}</th>
+                <th className="p-2 text-left cursor-pointer w-[80px]" onClick={() => requestSort("eventDate")}>DATE {getSortIndicator("eventDate")}</th>
+                <th className="p-2 text-left hidden md:table-cell">LOCATION</th>
                 <th className="p-2 text-left cursor-pointer" onClick={() => requestSort("phone")}>PHONE {getSortIndicator("phone")}</th>
-                <th className="p-2 text-center">WHATSAPP</th>
+                <th className="p-2 text-center">WA</th>
                 <th className="p-2 text-center">CALL</th>
-                <th className="p-2 text-center hidden sm:table-cell">MESSAGED</th>
+                <th className="p-2 text-center hidden sm:table-cell">MSG</th>
                 <th className="p-2 text-center hidden sm:table-cell">CALLED</th>
-                <th className="p-2 text-left hidden md:table-cell">NOTE</th>
+                <th className="p-2 text-left hidden lg:table-cell">NOTE</th>
               </tr>
             </thead>
             <tbody>
@@ -284,8 +266,8 @@ export default function ClientDashboard() {
                     ? diffDays < 0
                       ? "bg-red-50"
                       : diffDays <= 7
-                        ? "bg-yellow-50"
-                        : ""
+                      ? "bg-yellow-50"
+                      : ""
                     : "";
                 return (
                   <tr key={c._id} className={`${rowClass} hover:bg-gray-100`}>
@@ -294,21 +276,27 @@ export default function ClientDashboard() {
                     <td className="p-2">
                       {c.eventDate
                         ? new Date(c.eventDate).toLocaleDateString("en-GB", {
-                          day: "2-digit",
-                          month: "short",
-                        }).toUpperCase()
+                            day: "2-digit",
+                            month: "short",
+                          }).toUpperCase()
                         : "-"}
                     </td>
-                    <td className="p-2 hidden sm:table-cell">{c.eventLocation}</td>
+                    <td className="p-2 hidden md:table-cell">{c.eventLocation}</td>
                     <td className="p-2">{c.phone}</td>
                     <td className="p-2 text-center">
                       <a
-                        href={`https://wa.me/${c.phone.startsWith("+91") ? c.phone.slice(1) : c.phone.length === 10 ? `91${c.phone}` : c.phone}`}
+                        href={`https://wa.me/${
+                          c.phone.startsWith("+91")
+                            ? c.phone.slice(1)
+                            : c.phone.length === 10
+                            ? `91${c.phone}`
+                            : c.phone
+                        }`}
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center justify-center bg-green-100 text-green-600 p-1 rounded hover:bg-green-200"
                       >
-                        <MessageCircle size={18} />
+                        <MessageCircle size={16} />
                       </a>
                     </td>
                     <td className="p-2 text-center">
@@ -316,17 +304,30 @@ export default function ClientDashboard() {
                         href={`tel:${c.phone}`}
                         className="inline-flex items-center justify-center bg-blue-100 text-blue-600 p-1 rounded hover:bg-blue-200"
                       >
-                        <Phone size={18} />
+                        <Phone size={16} />
                       </a>
                     </td>
                     <td className="p-2 text-center hidden sm:table-cell">
-                      <input type="checkbox" checked={c.messaged} onChange={(e) => toggleStatus(c._id, "messaged", e.target.checked)} />
+                      <input
+                        type="checkbox"
+                        checked={c.messaged}
+                        onChange={(e) => toggleStatus(c._id, "messaged", e.target.checked)}
+                      />
                     </td>
                     <td className="p-2 text-center hidden sm:table-cell">
-                      <input type="checkbox" checked={c.called} onChange={(e) => toggleStatus(c._id, "called", e.target.checked)} />
+                      <input
+                        type="checkbox"
+                        checked={c.called}
+                        onChange={(e) => toggleStatus(c._id, "called", e.target.checked)}
+                      />
                     </td>
-                    <td className="p-2 hidden md:table-cell">
-                      <Textarea placeholder="Add note..." value={c.note || ""} onChange={(e) => updateNote(c._id, e.target.value)} className="min-h-[38px]" />
+                    <td className="p-2 hidden lg:table-cell">
+                      <Textarea
+                        placeholder="Add note..."
+                        value={c.note || ""}
+                        onChange={(e) => updateNote(c._id, e.target.value)}
+                        className="min-h-[38px]"
+                      />
                     </td>
                   </tr>
                 );
@@ -338,3 +339,4 @@ export default function ClientDashboard() {
     </div>
   );
 }
+
