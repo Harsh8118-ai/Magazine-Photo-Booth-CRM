@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 import ClientDashboard from "./ClientDashboard";
-import EditClientDashboard from "./EditClientDashboard";
+import EditClientDashboard from "./EditClientDashboard"; 
 import Features from "./Features";
 import Orders from "./Orders";
 import FinancePage from "./Finance";
