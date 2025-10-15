@@ -137,10 +137,16 @@ export default function ClientDashboard() {
     let matchesFilter = true;
     if (filter === "called") matchesFilter = c.called;
     if (filter === "messaged") matchesFilter = c.messaged;
+    if (filter === "createdat") {
+      const createdDate = new Date(c.createdAt);
+      const today = new Date();
+      matchesFilter =
+        createdDate.toDateString() === date.toDateString();
+    }
     if (filter === "upcoming") {
       const eventDate = new Date(c.eventDate);
       const today = new Date();
-      matchesFilter = eventDate >= today;
+      matchesFilter = eventDate >= today; 
     }
     return matchesSearch && matchesFilter;
   });
@@ -164,7 +170,7 @@ export default function ClientDashboard() {
   });
 
   return (
-     <div className="p-4 sm:p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-4 sm:p-6 space-y-6 bg-gray-50 min-h-screen">
       <h1 className="text-lg sm:text-xl font-bold text-center sm:text-left">Client Overview</h1>
 
       {message && (
@@ -175,7 +181,7 @@ export default function ClientDashboard() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-        {[ 
+        {[
           { icon: <User className="text-green-600 w-5 h-5 sm:w-6 sm:h-6" />, label: "Total Clients", value: totalClients },
           { icon: <MessageCircle className="text-blue-600 w-5 h-5 sm:w-6 sm:h-6" />, label: "Contacted", value: contacted },
           { icon: <Calendar className="text-yellow-600 w-5 h-5 sm:w-6 sm:h-6" />, label: "Upcoming (7 days)", value: upcoming },
@@ -228,6 +234,7 @@ export default function ClientDashboard() {
               <option value="called">Called</option>
               <option value="messaged">Messaged</option>
               <option value="upcoming">Upcoming Events</option>
+              <option value="createdat">Created At</option>
             </select>
           </div>
           <div className="flex flex-wrap gap-2 text-xs sm:text-sm justify-center sm:justify-start">
@@ -266,8 +273,8 @@ export default function ClientDashboard() {
                     ? diffDays < 0
                       ? "bg-red-50"
                       : diffDays <= 7
-                      ? "bg-yellow-50"
-                      : ""
+                        ? "bg-yellow-50"
+                        : ""
                     : "";
                 return (
                   <tr key={c._id} className={`${rowClass} hover:bg-gray-100`}>
@@ -276,22 +283,21 @@ export default function ClientDashboard() {
                     <td className="p-2">
                       {c.eventDate
                         ? new Date(c.eventDate).toLocaleDateString("en-GB", {
-                            day: "2-digit",
-                            month: "short",
-                          }).toUpperCase()
+                          day: "2-digit",
+                          month: "short",
+                        }).toUpperCase()
                         : "-"}
                     </td>
                     <td className="p-2 hidden md:table-cell">{c.eventLocation}</td>
                     <td className="p-2">{c.phone}</td>
                     <td className="p-2 text-center">
                       <a
-                        href={`https://wa.me/${
-                          c.phone.startsWith("+91")
+                        href={`https://wa.me/${c.phone.startsWith("+91")
                             ? c.phone.slice(1)
                             : c.phone.length === 10
-                            ? `91${c.phone}`
-                            : c.phone
-                        }`}
+                              ? `91${c.phone}`
+                              : c.phone
+                          }`}
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center justify-center bg-green-100 text-green-600 p-1 rounded hover:bg-green-200"
