@@ -146,7 +146,7 @@ export default function ClientDashboard() {
     if (filter === "upcoming") {
       const eventDate = new Date(c.eventDate);
       const today = new Date();
-      matchesFilter = eventDate >= today; 
+      matchesFilter = eventDate >= today;
     }
     return matchesSearch && matchesFilter;
   });
