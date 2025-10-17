@@ -141,7 +141,7 @@ export default function ClientDashboard() {
       const createdDate = new Date(c.createdAt);
       const today = new Date();
       matchesFilter =
-        createdDate.toDateString() === date.toDateString();
+        createdDate.toDateString() === date.toDateString(); 
     }
     if (filter === "upcoming") {
       const eventDate = new Date(c.eventDate);
