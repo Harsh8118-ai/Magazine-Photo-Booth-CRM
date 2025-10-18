@@ -283,7 +283,7 @@ export default function ClientDashboard() {
                     <td className="p-2">
                       {c.eventDate
                         ? new Date(c.eventDate).toLocaleDateString("en-GB", {
-                          day: "2-digit",
+                          day: "2-digit",  
                           month: "short",
                         }).toUpperCase()
                         : "-"}
