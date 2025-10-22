@@ -3,6 +3,7 @@ import { Card, CardContent } from "./components/ui/card";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
 import { Textarea } from "./components/ui/textarea";
+import { useNavigate } from "react-router-dom";
 import { Phone, MessageCircle, User, Calendar, AlertCircle } from "lucide-react";
 
 export default function ClientDashboard() {
@@ -14,6 +15,8 @@ export default function ClientDashboard() {
     eventLocation: "",
     phone: "",
   });
+
+  const navigate = useNavigate();
 
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
@@ -141,7 +144,7 @@ export default function ClientDashboard() {
       const createdDate = new Date(c.createdAt);
       const today = new Date();
       matchesFilter =
-        createdDate.toDateString() === date.toDateString(); 
+        createdDate.toDateString() === date.toDateString();
     }
     if (filter === "upcoming") {
       const eventDate = new Date(c.eventDate);
@@ -171,13 +174,24 @@ export default function ClientDashboard() {
 
   return (
     <div className="p-4 sm:p-6 space-y-6 bg-gray-50 min-h-screen">
-      <h1 className="text-lg sm:text-xl font-bold text-center sm:text-left">Client Overview</h1>
+      
 
       {message && (
         <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-3 py-2 text-sm sm:text-base rounded text-center">
           {message}
         </div>
       )}
+
+      <div className="flex justify-between items-center">
+        <h1 className="text-lg sm:text-xl font-bold text-center sm:text-left">Client Overview</h1>
+
+        <Button
+          onClick={() => navigate("/send-message")}
+          className="bg-purple-600 hover:bg-purple-700 text-white"
+        >
+          ✉️ Send Message
+        </Button>
+      </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
@@ -282,7 +296,7 @@ export default function ClientDashboard() {
                     <td className="p-2">{c.eventType}</td>
                     <td className="p-2">
                       {c.eventDate
-                        ? new Date(c.eventDate).toLocaleDateString("en-GB", {  
+                        ? new Date(c.eventDate).toLocaleDateString("en-GB", {
                           day: "2-digit",
                           month: "short",
                         }).toUpperCase()
@@ -293,10 +307,10 @@ export default function ClientDashboard() {
                     <td className="p-2 text-center">
                       <a
                         href={`https://wa.me/${c.phone.startsWith("+91")
-                            ? c.phone.slice(1)
-                            : c.phone.length === 10
-                              ? `91${c.phone}`
-                              : c.phone
+                          ? c.phone.slice(1)
+                          : c.phone.length === 10
+                            ? `91${c.phone}`
+                            : c.phone
                           }`}
                         target="_blank"
                         rel="noreferrer"

@@ -17,6 +17,7 @@ import EditClientDashboard from "./EditClientDashboard";
 import Features from "./Features";
 import Orders from "./Orders";
 import FinancePage from "./Finance";
+import SendMessagePage from "./SendMessagePage";
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -117,6 +118,7 @@ export default function App() {
             <Route path="/features" element={<Features />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/finance" element={<FinancePage />} />
+            <Route path="/send-message" element={<SendMessagePage /> } />
           </Routes>
         </main>
       </div>
