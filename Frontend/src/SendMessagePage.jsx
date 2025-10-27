@@ -74,7 +74,7 @@ const generateWhatsAppLink = (client) => {
 
   const personalized = template.replace("[Client Name]", firstName);
 
-  const encoded = encodeURIComponent(personalized);  
+  const encoded = encodeURIComponent(personalized);
 
   const phone =
     client.phone.startsWith("+91") ? client.phone.slice(1) : `91${client.phone}`;
