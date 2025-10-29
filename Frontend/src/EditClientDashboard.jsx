@@ -15,7 +15,7 @@ export default function EditClientDashboard() {
 
   // fetch clients
   useEffect(() => {
-    fetch(`${BASE_URL}/clients`) 
+    fetch(`${BASE_URL}/clients`)
       .then((res) => res.json())
       .then(setClients)
       .catch((err) => console.error("Fetch error:", err));
