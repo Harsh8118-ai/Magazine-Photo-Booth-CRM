@@ -43,8 +43,8 @@ export default function EditClientDashboard() {
     try {
       await fetch(`${BASE_URL}/clients/${id}`, {
         method: "DELETE",
-      });
-      setClients(clients.filter((c) => c._id !== id));  
+      });  
+      setClients(clients.filter((c) => c._id !== id));    
     } catch (err) {
       console.error("Delete error:", err);
     }
