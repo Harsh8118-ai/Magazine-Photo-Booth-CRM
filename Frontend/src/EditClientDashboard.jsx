@@ -11,7 +11,7 @@ export default function EditClientDashboard() {
   const [filter, setFilter] = useState("all");
   const [sortConfig, setSortConfig] = useState({ key: "eventDate", direction: "asc" });
 
-  const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+  const BASE_URL = import.meta.env.VITE_BACKEND_URL;  
 
   // fetch clients
   useEffect(() => {
