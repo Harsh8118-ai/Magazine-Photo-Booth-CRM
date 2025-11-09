@@ -30,7 +30,7 @@ export default function App() {
           {/* Left: Logo + Title */}
           <div className="flex items-center gap-2">
             <ClipboardList className="text-purple-600 w-6 h-6" />
-            <h1 className="text-lg font-bold">PhotoBooth CRM</h1>
+            <h1 className="text-lg font-bold">Luxury Booth CRM</h1>
             <HelpCircle className="text-gray-400 w-4 h-4" />
           </div>
 
