@@ -37,7 +37,7 @@ export default function App() {
           {/* Mobile Menu Button */}
           <button
             className="sm:hidden text-gray-700"
-            onClick={() => setMenuOpen(!menuOpen)}  
+            onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
