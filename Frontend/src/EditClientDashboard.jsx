@@ -19,7 +19,7 @@ export default function EditClientDashboard() {
       .then((res) => res.json())
       .then(setClients)
       .catch((err) => console.error("Fetch error:", err));  
-  }, [BASE_URL]);  
+  }, [BASE_URL]);
   
   // inline field update
   const handleFieldEdit = async (id, field, value) => {
