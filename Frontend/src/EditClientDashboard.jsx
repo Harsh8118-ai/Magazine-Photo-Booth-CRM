@@ -18,7 +18,7 @@ export default function EditClientDashboard() {
     fetch(`${BASE_URL}/clients`)
       .then((res) => res.json())
       .then(setClients)
-      .catch((err) => console.error("Fetch error:", err));   
+      .catch((err) => console.error("Fetch error:", err));    
   }, [BASE_URL]);
 
   // inline field update
