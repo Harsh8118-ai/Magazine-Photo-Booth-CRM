@@ -22,7 +22,7 @@ export default function EditClientDashboard() {
   }, [BASE_URL]);
   
   // inline field update
-  const handleFieldEdit = async (id, field, value) => {  
+  const handleFieldEdit = async (id, field, value) => {
     try {
       const res = await fetch(`${BASE_URL}/clients/${id}/field`, {
         method: "PATCH",
