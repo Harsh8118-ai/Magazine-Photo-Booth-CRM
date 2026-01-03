@@ -11,7 +11,7 @@ export default function SendMessagePage() {
   const [filter, setFilter] = useState("all");
   const [sortConfig, setSortConfig] = useState({ key: "eventDate", direction: "asc" });
   const [template, setTemplate] = useState(
-    "Hey *[Client Name]*,\nYour event is coming up soon!\n\nIf you’re really interested in our *Luxury Magazine Photo Booth*, this is the last call to book.Give us a chance to make your event truly *Premium*\n\n@luxurybooth.in"
+    "Hey *[Client Name]*,\nYour event is coming up soon!\n\nIf you’re really interested in our *Luxury Magazine Photo Booth*, this is the last call to book.Give us a chance to make your event truly *Premium*\n\n@theluxurybooths"
   );
 
   const BASE_URL = import.meta.env.VITE_BACKEND_URL;
