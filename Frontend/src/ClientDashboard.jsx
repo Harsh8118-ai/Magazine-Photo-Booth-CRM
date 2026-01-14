@@ -180,7 +180,7 @@ export default function ClientDashboard() {
         <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-3 py-2 text-sm sm:text-base rounded text-center">
           {message}
         </div>
-      )}
+      )} 
 
       <div className="flex justify-between items-center">
         <h1 className="text-lg sm:text-xl font-bold text-center sm:text-left">Client Overview</h1>
