@@ -182,7 +182,7 @@ export default function ClientDashboard() {
         </div>
       )} 
 
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center">  
         <h1 className="text-lg sm:text-xl font-bold text-center sm:text-left">Client Overview</h1>
 
         <Button
