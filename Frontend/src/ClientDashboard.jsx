@@ -183,7 +183,7 @@ export default function ClientDashboard() {
       )} 
 
       <div className="flex justify-between items-center">
-        <h1 className="text-lg sm:text-xl font-bold text-center sm:text-left">Client Overview</h1>
+        <h1 className="text-lg sm:text-xl font-bold text-center sm:text-left">Client Overview</h1>  
 
         <Button
           onClick={() => navigate("/send-message")}
