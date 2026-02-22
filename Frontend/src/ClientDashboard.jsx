@@ -175,7 +175,6 @@ export default function ClientDashboard() {
   return (
     <div className="p-4 sm:p-6 space-y-6 bg-gray-50 min-h-screen">
       
-
       {message && (
         <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 px-3 py-2 text-sm sm:text-base rounded text-center">
           {message}
