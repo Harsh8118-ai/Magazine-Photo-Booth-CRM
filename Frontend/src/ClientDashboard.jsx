@@ -188,7 +188,7 @@ export default function ClientDashboard() {
           onClick={() => navigate("/send-message")}
           className="bg-purple-600 hover:bg-purple-700 text-white"
         >
-          ✉️ Send Message  
+          ✉️ Send Message   
         </Button>
       </div>
 
