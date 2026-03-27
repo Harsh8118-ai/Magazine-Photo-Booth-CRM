@@ -273,7 +273,7 @@ export default function ClientDashboard() {
                 <th className="p-2 text-center">CALL</th>
                 <th className="p-2 text-center hidden sm:table-cell">MSG</th>
                 <th className="p-2 text-center hidden sm:table-cell">CALLED</th>
-                <th className="p-2 text-left hidden lg:table-cell">NOTE</th>
+                <th className="p-2 text-left hidden lg:table-cell">NOTE</th>  
               </tr>
             </thead>
             <tbody>
