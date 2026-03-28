@@ -344,7 +344,7 @@ export default function ClientDashboard() {
                       <Textarea
                         placeholder="Add note..."
                         value={c.note || ""}
-                        onChange={(e) => updateNote(c._id, e.target.value)}
+                        onChange={(e) => updateNote(c._id, e.target.value)}  
                         className="min-h-[38px]"
                       />
                     </td>
