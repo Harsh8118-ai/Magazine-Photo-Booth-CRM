@@ -329,7 +329,7 @@ export default function ClientDashboard() {
                     <td className="p-2 text-center hidden sm:table-cell">
                       <input
                         type="checkbox"
-                        checked={c.messaged}
+                        checked={c.messaged} 
                         onChange={(e) => toggleStatus(c._id, "messaged", e.target.checked)}
                       />
                     </td>
