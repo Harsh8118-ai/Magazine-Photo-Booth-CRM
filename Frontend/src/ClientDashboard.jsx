@@ -138,7 +138,7 @@ export default function ClientDashboard() {
       (c.eventType && c.eventType.toLowerCase().includes(search.toLowerCase()));
 
     let matchesFilter = true;
-    if (filter === "called") matchesFilter = c.called;    
+    if (filter === "called") matchesFilter = c.called; 
     if (filter === "messaged") matchesFilter = c.messaged;
     if (filter === "createdat") {
       const createdDate = new Date(c.createdAt);
